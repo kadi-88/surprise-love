@@ -1,0 +1,259 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>A Message For You ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #fff0f2, #f8dce3, #fff7f0);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Poppins', sans-serif;
+    color: #704c57;
+    overflow: hidden;
+    padding: 20px;
+}
+
+.container {
+    background: rgba(255,255,255,0.8);
+    max-width: 500px;
+    width: 100%;
+    padding: 45px 25px;
+    text-align: center;
+    border-radius: 25px;
+    box-shadow: 0 15px 50px #b77b8a30;
+    border: 1px solid white;
+    position: relative;
+    z-index: 2;
+}
+
+h1 {
+    font-family: 'Great Vibes', cursive;
+    font-size: 48px;
+    color: #bd7187;
+    margin-bottom: 20px;
+}
+
+.heart {
+    font-size: 65px;
+    cursor: pointer;
+    display: inline-block;
+    animation: heartbeat 1.3s infinite;
+    margin: 20px;
+}
+
+@keyframes heartbeat {
+    50% { transform: scale(1.2); }
+}
+
+p {
+    font-size: 14px;
+    line-height: 2;
+}
+
+button {
+    background: #bd7187;
+    color: white;
+    border: none;
+    padding: 14px 28px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 13px;
+    margin-top: 25px;
+    transition: .3s;
+}
+
+button:hover {
+    background: #99546b;
+    transform: scale(1.05);
+}
+
+#message {
+    display: none;
+    margin-top: 25px;
+    animation: appear 1s ease;
+}
+
+#message p {
+    margin-bottom: 15px;
+}
+
+.final {
+    font-family: 'Great Vibes', cursive;
+    color: #bd7187;
+    font-size: 35px;
+}
+
+@keyframes appear {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.floating {
+    position: fixed;
+    bottom: -30px;
+    color: #d58b9e;
+    animation: float 6s linear forwards;
+    pointer-events: none;
+    z-index: 1;
+}
+
+@keyframes float {
+    to {
+        transform: translateY(-110vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Hey, my love Omar</h1>
+
+    <p>
+        I know I've been a little quiet lately.
+        But I have something to tell you.
+    </p>
+
+    <div class="heart" onclick="openMessage()">
+        ❤️
+    </div>
+
+    <p>Touch my heart to discover what's inside.</p>
+
+    <button onclick="openMessage()">
+        Open my heart ♡
+    </button>
+
+    <div id="message">
+
+        <p>Maybe I don't say it enough...</p>
+
+        <p>
+            Maybe I don't always know how to express
+            what's inside my heart.
+        </p>
+
+        <p>
+            Sometimes I stay silent, not because
+            I don't feel anything, but because
+            I don't always know how to put my feelings
+            into words.
+        </p>
+
+        <p>
+            But please, never mistake my silence
+            for a lack of love.
+        </p>
+
+        <p>
+            I don't want you to doubt how special
+            you are to me.
+        </p>
+
+        <p>
+            I'm sorry if my silence made you feel
+            unloved. You deserve to hear those words
+            and to feel them too.
+        </p>
+
+        <p class="final">
+            I love you, my favorite person. ❤️
+        </p>
+
+        <button onclick="forgive()">
+            Do you forgive me? 🥺
+        </button>
+
+        <div id="answer"></div>
+
+    </div>
+
+</div>
+
+<script>
+
+function openMessage() {
+    document.getElementById("message").style.display = "block";
+
+    document.querySelector(".heart").innerHTML = "💗";
+
+    document.getElementById("message").scrollIntoView({
+        behavior: "smooth",
+        block: "nearest"
+    });
+
+    createHearts();
+}
+
+function forgive() {
+    const answer = document.getElementById("answer");
+
+    answer.innerHTML = `
+        <p class="final">
+            Come here, my love! 🥹❤️
+        </p>
+        <p>
+            I have so much love to give you.
+            And I'll keep learning how to show it.
+        </p>
+    `;
+
+    createHearts();
+
+    // Faire défiler automatiquement vers le message
+    setTimeout(() => {
+        answer.scrollIntoView({
+            behavior: "smooth",
+            block: "center"
+        });
+    }, 100);
+}
+
+function createHearts() {
+    for (let i = 0; i < 20; i++) {
+
+        let heart = document.createElement("div");
+
+        heart.className = "floating";
+        heart.innerHTML = "♥";
+
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.fontSize = (15 + Math.random() * 25) + "px";
+        heart.style.animationDuration = (3 + Math.random() * 4) + "s";
+
+        document.body.appendChild(heart);
+
+        setTimeout(() => heart.remove(), 7000);
+    }
+}
+
+</script>
+
+</body>
+</html>
